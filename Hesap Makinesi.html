@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hesap Makinesi</title>
+	<style type="text/css">
+		div{
+			border-style: solid;
+            border-color: coral;
+			width: 310px;
+			margin: 150px;
+			border-radius: 25px;
+			background:#663399;
+			text-align: center;
+			padding: 20px 50px 20px;
+
+		}
+		.button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+         margin: 4px 2px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+}
+.button1 {
+        background-color: red;
+        border: none;
+        color: white;
+         margin: 4px 2px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+}
+.button2 {
+        background-color:orange;
+        border: none;
+        color: white;
+         margin: 4px 2px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+}
+input {
+  box-sizing: border-box;
+   margin: 8px 0;
+  border: 2px solid green;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 20px;
+}
+	</style>
+	<script type="text/javascript">
+		var rakamekle = false;
+		var oncekisonuc=0;
+		var islem= "=";
+		function temizle(){
+			document.hesapmakinesi.sonuc.value = 0;
+			oncekisonuc = 0;
+			rakamekle = false;
+			islem = "=";
+		}
+		function hesapla(yenislem){
+		var yenisayi =eval(document.hesapmakinesi.sonuc.value);
+		switch(islem){
+		case"+":oncekisonuc=oncekisonuc+yenisayi;
+		break;
+		case "-":oncekisonuc=oncekisonuc-yenisayi;
+		break;
+		case "/":oncekisonuc=oncekisonuc/yenisayi;
+		break;
+		case "*":oncekisonuc=oncekisonuc*yenisayi;
+		break;
+		case "=":oncekisonuc=yenisayi;
+		break;
+		default: oncekisonuc=yenisayi;
+		}
+
+		document.hesapmakinesi.sonuc.value=oncekisonuc;
+		rakamekle = false;
+		islem = yenislem;
+	}
+		function sayiyaz(rakam){
+			if (rakamekle){
+			document.hesapmakinesi.sonuc.value +=rakam;
+		}else{
+			document.hesapmakinesi.sonuc.value= rakam;
+			rakamekle=true;
+		}
+	}
+	
+	</script>
+</head>
+<body>
+	<div>
+	<form name ="hesapmakinesi">
+	<input type="field" name="sonuc" value="0" width="20" align="right">
+	<br><br>
+	<input type="button"class="button" name="7" value="7" onclick="sayiyaz(7)">
+	<input type="button" class="button" name="8" value="8" onclick="sayiyaz(8)">
+	<input type="button" class="button" name="9" value="9" onclick="sayiyaz(9)">
+	<br><br>
+	<input type="button" class="button" name="4" value="4" onclick="sayiyaz(4)">
+	<input type="button" class="button" name="5" value="5" onclick="sayiyaz(5)">
+	<input type="button" class="button" name="6" value="6" onclick="sayiyaz(6)">
+	<br><br>
+	<input type="button" class="button" name="1" value="1" onclick="sayiyaz(1)">
+	<input type="button" class="button" name="2" value="2" onclick="sayiyaz(2)">
+	<input type="button" class="button" name="3" value="3" onclick="sayiyaz(3)">
+	<br><br>
+	<input type="button" class="button" name="0" value="0" onclick="sayiyaz(0)">
+	<input type="button" class="button2" name="C" value="C" onclick="temizle()">
+	<input type="button" class="button2" name="=" value="=" onclick="hesapla('=')">
+	<br><br>
+	<input type="button" class="button1" name="+" value="+" onclick="hesapla('+')">
+	<input type="button" class="button1" name="-" value="-" onclick="hesapla('-')">
+	<input type="button" class="button1" name="*" value="*" onclick="hesapla('*')">
+	<input type="button" class="button1" name="/" value="/" onclick="hesapla('/')">
+	</form>
+	</div>
+</body>
+</html>
